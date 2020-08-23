@@ -1,0 +1,50 @@
+<html>
+  <head>
+      <style>
+      body {
+            font-family: monospace;
+            text-align: center;
+      }
+      </style>
+      <title>Damir V.</title>
+  </head>
+  <body>
+      <big>
+          <big>
+             <big>
+                    <big>
+                    <p>Spotify Web Integration</p>
+                    </big>
+                  </big>
+             </big>
+          </big>
+      </big>
+      <script src="https://sdk.scdn.co/spotify-player.js"></script>
+      <script>
+          window.onSpotifyWebPlaybackSDKReady = () => {
+          const token = 'BQCNrYelNYd0b9wZxWV0q_bF-WaT5wdUn5shSifA-9OlRzQ73vD940OXXhFf94z2vGAqpzwQ8SfEUuPl5QdqPQlP3yRasuYzjhgqP5D0ETo0E3bTr2NKIw5hs7d3foSwe0020y13Asp1q6TGvxDfZ6gsBxxk49oanRltfA';
+          const player = new Spotify.Player({
+              name: 'Damir V [Github]',
+              getOAuthToken: cb => { cb(token); }
+          });
+
+          player.addListener('initialization_error', ({ message }) => { console.error(message); });
+          player.addListener('authentication_error', ({ message }) => { console.error(message); });
+          player.addListener('account_error', ({ message }) => { console.error(message); });
+          player.addListener('playback_error', ({ message }) => { console.error(message); });
+
+          player.addListener('player_state_changed', state => { console.log(state); });
+
+          player.addListener('ready', ({ device_id }) => {
+              console.log('Ready with Device ID', device_id);
+          });
+
+          player.addListener('not_ready', ({ device_id }) => {
+              console.log('Device ID has gone offline', device_id);
+          });
+
+          player.connect();
+          };
+      </script>
+  </body>
+</html>
